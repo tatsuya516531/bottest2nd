@@ -93,5 +93,42 @@
   agent-id="122597a2-a1e0-4274-aba3-619074336ca3"
   language-code="ja"
 ></df-messenger>
+  <script>
+    // この中にDOMが完全に読み込まれた後に実行したいスクリプトを記述します。
+    document.addEventListener("DOMContentLoaded", function() {
+        // 例えば、DOM要素にイベントリスナを追加する処理など。
+        const dfMessenger = document.querySelector('df-messenger');
+        dfMessenger.addEventListener('df-messenger-loaded', function (event) {
+            console.log('chat opened')
+            const payload = [
+            {
+                "type": "description",
+                "title": "こんにちは！",
+                "text": [
+                "ヒーロー社チャットボットは以下のことにお答えできます"
+                ]
+            },
+            {
+                "type": "chips",
+                "options": [
+                    {
+                        "text": "会社の基本情報"
+                    },
+                    {
+                        "text": "書類関連"
+                    },
+                    {
+                        "text": "全体会議"
+                    },
+                    {
+                        "text": "木鶏会"
+                    }
+                ]
+            }];
+        // dfMessenger.renderCustomText('こんにちは！\nヒーロー社チャットボットは以下のことにお答えできます');
+        dfMessenger.renderCustomCard(payload);
+        });
+    });
+</script>
 </body>
 </html>
